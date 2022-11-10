@@ -26,4 +26,10 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
+
+  type Query {
+    users: [User]
+    user(username: String!): User
+  }
 `;
+//next is book
