@@ -33,5 +33,20 @@ const typeDefs = gql`
     books(username: String): [Book]
     book(bookId: ID!): Book
   }
+
+  type Mutation {
+    addUser(username: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    addBook(
+      description: String!
+      bookId: String!
+      image: String!
+      link: String!
+      title: String!
+    ): Book
+    addAuthor(bookId: ID!, author: String!): Book
+    removeBook(bookId: ID!): Book
+    removeAuthor(bookId: ID!, author: String!): book
+  }
 `;
-//next is book
+//confused with using bookId as I feel there are two bookId's present currently in User and in Book. One for the search one for the store-concept?
