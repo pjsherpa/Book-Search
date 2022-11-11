@@ -42,36 +42,24 @@ const resolvers = {
 
       return { token, user };
     },
-    addBook: async (parent, { description, bookId, image, link, title }) => {
+    saveBook: async (
+      parent,
+      { description, bookId, image, link, title, authors }
+    ) => {
       const book = await Book.create({
         description,
         bookId,
         image,
         link,
         title,
+        authors,
       });
 
       await Book.findOneAndUpdate({ $addToSet: { books: book._id } });
       return book;
     },
-    addAuthor: async (parent, { bookId, author }) => {
-      return Book.findOneAndUpdate(
-        { _id: bookId },
-        {
-          $addToSet: { authors: { author } },
-        },
-        { new: true, runValidators: true }
-      );
-    },
     removeBook: async (parent, { bookId }) => {
       return Book.findOneAndDelete({ _id: bookId });
-    },
-    removeAuthor: async (parent, { bookId }) => {
-      return Book.findOneAndUpdate(
-        { _id: bookId },
-        { $pull: { authors: { _id: author } } },
-        { new: true }
-      );
     },
   },
 };

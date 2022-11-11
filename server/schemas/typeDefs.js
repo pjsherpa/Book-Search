@@ -1,5 +1,6 @@
 const { gql } = require("apollo-server-express");
 
+//Line 20 authors:[Book]! not sure on this one is it suppose to be authors:String
 const typeDefs = gql`
   type User {
     _id: ID
@@ -16,6 +17,7 @@ const typeDefs = gql`
     image: String
     link: String
     title: String
+    authors: [String]!
   }
 
   type Author {
@@ -37,16 +39,15 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addBook(
+    saveBook(
       description: String!
       bookId: String!
       image: String!
       link: String!
       title: String!
+      authors: String!
     ): Book
-    addAuthor(bookId: ID!, author: String!): Book
     removeBook(bookId: ID!): Book
-    removeAuthor(bookId: ID!, author: String!): book
   }
 `;
 //confused with using bookId as I feel there are two bookId's present currently in User and in Book. One for the search one for the store-concept?
