@@ -18,3 +18,16 @@ export const GET_ME = gql`
     }
   }
 `;
+
+export const QUERY_BOOKS = gql`
+query getBook {
+Book {
+_id: ID
+description: String
+bookId: String
+image: String
+link: String
+title: String
+authors: [String]!
+}
+}`;

@@ -46,8 +46,8 @@ const typeDefs = gql`
       link: String!
       title: String!
       authors: String!
-    ): Book
-    removeBook(bookId: ID!): Book
+    ): User
+    removeBook(bookId: ID!): User
   }
 `;
 //confused with using bookId as I feel there are two bookId's present currently in User and in Book. One for the search one for the store-concept?

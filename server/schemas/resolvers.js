@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { async } = require("rxjs/internal/scheduler/async");
+
 const { User, Book } = require("../models");
 const { signToken } = require("../utils/auth");
 
@@ -46,7 +46,7 @@ const resolvers = {
       parent,
       { description, bookId, image, link, title, authors }
     ) => {
-      const book = await Book.create({
+      const book = await Book.findOne({
         description,
         bookId,
         image,
