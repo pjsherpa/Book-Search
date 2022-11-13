@@ -8,6 +8,7 @@ const typeDefs = gql`
     email: String
     password: String
     savedBooks: [Book]!
+    //BookCount
   }
 
   type Book {
@@ -17,11 +18,7 @@ const typeDefs = gql`
     image: String
     link: String
     title: String
-    authors: [String]!
-  }
-
-  type Author {
-    type: String
+    authors: [String]
   }
 
   type Auth {
