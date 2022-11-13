@@ -1,3 +1,4 @@
+//useEffect to be removed.
 import React, { useState, useEffect } from "react";
 import {
   Jumbotron,
@@ -10,7 +11,7 @@ import {
 } from "react-bootstrap";
 
 import Auth from "../utils/auth";
-import { QUERY_BOOK } from "../utils/queries";
+
 import { SAVE_BOOK } from "../utils/mutation";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 import { useMutation } from "@apollo/client";
@@ -33,33 +34,6 @@ const SearchBooks = () => {
   // create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    if (!searchInput) {
-      return false;
-    }
-
-    try {
-      const response = await QUERY_BOOK(searchInput);
-
-      if (!response.ok) {
-        throw new Error("something went wrong!");
-      }
-
-      const { items } = await response.json();
-
-      const bookData = items.map((book) => ({
-        bookId: book.id,
-        authors: book.volumeInfo.authors || ["No author to display"],
-        title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
-        image: book.volumeInfo.imageLinks?.thumbnail || "",
-      }));
-
-      setSearchedBooks(bookData);
-      setSearchInput("");
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   // create function to handle saving a book to our database

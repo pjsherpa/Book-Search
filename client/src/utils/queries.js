@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_ME = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query me {
+    me {
       _id
       username
       email
@@ -18,19 +18,6 @@ export const GET_ME = gql`
     }
   }
 `;
-
-export const QUERY_BOOK = gql`
-query getBook {
-Book {
-_id: ID
-description: String
-bookId: String
-image: String
-link: String
-title: String
-authors: [String]!
-}
-}`;
 
 // axios
 // export const searchGoogleBooks = (query) => {
