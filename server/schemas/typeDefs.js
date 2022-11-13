@@ -50,4 +50,5 @@ const typeDefs = gql`
     removeBook(bookId: ID!): User
   }
 `;
+module.exports = typeDefs;
 //confused with using bookId as I feel there are two bookId's present currently in User and in Book. One for the search one for the store-concept?
