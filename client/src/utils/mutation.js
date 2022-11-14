@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-//removeBook??
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -29,7 +29,7 @@ export const SAVE_BOOK = gql`
     username
     email
     bookCount
-    saveBook{
+    savedBook{
       author
       description
       bookId

@@ -3,12 +3,12 @@ const { gql } = require("apollo-server-express");
 //Line 20 authors:[Book]! not sure on this one is it suppose to be authors:String
 const typeDefs = gql`
   type User {
-    _id: ID
-    username: String
-    email: String
-    password: String
+    _id: ID!
+    username: String!
+    email: String!
+    password: String!
     savedBooks: [Book]!
-    bookCount: Integer
+    bookCount: Int
   }
 
   type Book {
@@ -26,6 +26,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    me: User
     users: [User]
     user(username: String!): User
     books(username: String): [Book]

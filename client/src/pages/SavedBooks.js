@@ -66,36 +66,30 @@ const SavedBooks = () => {
     }
 
     try {
-      const { data } = await removeBook({
-        variables: { bookId },
+      await deleteBook({
+        variables: { bookId: bookId },
+        update: (cache) => {
+          const data = cache.readQuery({ query: GET_ME });
+          const userDataCache = data.me;
+          const savedBooksCache = userDataCache.savedBooks;
+          const updatedBookCache = savedBooksCache.filter(
+            (book) => book.bookId !== bookId
+          );
+          data.me.savedBooks = updatedBookCache;
+          cache.writeQuery({
+            query: GET_ME,
+            data: { data: { ...data.me.savedBooks } },
+          });
+        },
       });
+      // upon success, remove book's id from localStorage
+      removeBookId(bookId);
     } catch (err) {
       console.error(err);
     }
   };
-
-  if (!userDataLength) {
-    return <h3>No Book's Yet</h3>;
-  }
-
-  //   try {
-  //     const response = await deleteBook(bookId, token);
-
-  //     if (!response.ok) {
-  //       throw new Error("something went wrong!");
-  //     }
-
-  //     const updatedUser = await response.json();
-  //     setUserData(updatedUser);
-  //     // upon success, remove book's id from localStorage
-  //     removeBookId(bookId);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
 
