@@ -33,6 +33,7 @@ const SearchBooks = () => {
     return () => saveBookIds(savedBookIds);
   });
 
+  // create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -76,22 +77,23 @@ const SearchBooks = () => {
       return false;
     }
 
+    // if book successfully saves to user's account, save book id to state
     try {
-      await saveBook({
+      const { data } = await saveBook({
         variables: { book: bookToSave },
         update: (cache) => {
           const { me } = cache.readQuery({ query: GET_ME });
           cache.writeQuery({
             query: GET_ME,
             data: {
-              me: { ...me, savedBooks: [...me.savedBooks, bookToSave] },
+              me: { ...me, savedBooks: [...me.savedBooks, data.bookToSave] },
             },
           });
         },
       });
 
       // if book successfully saves to user's account, save book id to state
-      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+      setSavedBookIds("");
     } catch (err) {
       console.error(err);
     }
