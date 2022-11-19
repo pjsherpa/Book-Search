@@ -42,11 +42,11 @@ const SignupForm = () => {
       setShowAlert(true);
     }
 
-    setUserFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
+    // setUserFormData({
+    //   username: "",
+    //   email: "",
+    //   password: "",
+    // });
   };
 
   // check if form has everything (as per react-bootstrap docs)
