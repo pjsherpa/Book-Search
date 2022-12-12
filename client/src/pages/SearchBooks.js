@@ -102,7 +102,7 @@ const SearchBooks = () => {
           <h1>Search for Books!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
-              <Col xs={12} md={8}>
+              <Col xs={12} md={4}>
                 <Form.Control
                   name="searchInput"
                   value={searchInput}
@@ -112,7 +112,7 @@ const SearchBooks = () => {
                   placeholder="Search for a book"
                 />
               </Col>
-              <Col xs={12} md={4}>
+              <Col xs={12} md={2}>
                 <Button type="submit" variant="success" size="lg">
                   Submit Search
                 </Button>
